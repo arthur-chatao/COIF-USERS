@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon name="body"></ion-icon>
+      COIF-PAIS
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-content>
+    <ion-card color="primary">
+      <ion-card-header>
+        <ion-card-title> Informações para Login </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Cpf do Responsavel </ion-label>
+          <ion-input [(ngModel)]='gammbi.cpfGambi'> </ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label position="floating"> Senha </ion-label>
+          <ion-input type='password' [(ngModel)]='gammbi.senhaGambi'> </ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    <ion-button color='success' expand='full' (click)='logar()'> Logar </ion-button>
+    <br>
+    <ion-button color='dark' expand='full' href='resp-recebidas'> Debug </ion-button>
+    <br>
+    <br>
+    <br>
+    <br>
+  </ion-content>
+
+</ion-content>
