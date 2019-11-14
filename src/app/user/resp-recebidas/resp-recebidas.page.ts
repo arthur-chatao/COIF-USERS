@@ -16,13 +16,19 @@ import * as _ from 'lodash';
 })
 export class RespRecebidasPage implements OnInit {
   listaEnviar: Observable<Enviar[]>;
+  listaGambi: Observable<Gambi[]>;
+  constructor(private fire: AngularFireDatabase, private router: Router, ) {      
 
-  constructor(private fire: AngularFireDatabase, private router: Router, ) {
-    this.listaEnviar = this.fire.list<Enviar>('enviosAdm').snapshotChanges().pipe(
-      map(lista => lista.map(linha => ({
-        key: linha.payload.key, ...linha.payload.val()
-      })))
-    );
+        this.listaEnviar = this.fire.list<Enviar>('enviosAdm', ref =>
+          ref.orderByChild('cpfDest').equalTo('10650701950')).snapshotChanges().pipe(
+
+            map(lista => lista.map(linha => ({
+              key: linha.payload.key, ...
+                linha.payload.val()
+            }))));
+
+
+
   }
   ngOnInit() {
   }
