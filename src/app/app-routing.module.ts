@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: 'resp-recebidas',
     loadChildren: () => import('./user/resp-recebidas/resp-recebidas.module').then( m => m.RespRecebidasPageModule)
+  },  {
+    path: 'resp-respostas',
+    loadChildren: () => import('./user/resp-respostas/resp-respostas.module').then( m => m.RespRespostasPageModule)
   },
+
 ];
 
 @NgModule({
