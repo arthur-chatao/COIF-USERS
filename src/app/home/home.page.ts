@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { Alunos } from 'src/app/cadastros/entidade/alunos';
-import { Gambi } from 'src/app/user/gambiarra/gambi';
 import { map } from 'rxjs/operators'
 import * as _ from 'lodash';
 
@@ -15,10 +14,10 @@ import * as _ from 'lodash';
 export class HomePage {
 
   listaAlunos: Observable<Alunos[]>;
-  gammbi: Gambi = new Gambi();
+  cpf: string;
+  senha: string;
 
-
-  constructor(private fire: AngularFireDatabase,private rota: Router,) {
+  constructor(private fire: AngularFireDatabase, private rota: Router, ) {
     this.listaAlunos = this.fire.list<Alunos>('alunos').snapshotChanges().pipe(
       map(lista => lista.map(linha => ({
         key: linha.payload.key, ...linha.payload.val()
@@ -27,10 +26,15 @@ export class HomePage {
 
   }
 
-logar(){
-  this.fire.list('gammbi').push(this.gammbi);
-  this.gammbi = new Gambi();
-  this.rota.navigate(['resp-recebidas']);
-}
-
+  autenticar() {
+    this.fire.database.ref('alunos').orderByChild('cpfResp').equalTo(this.cpf).on("value", dadosFire => {
+      dadosFire.forEach(dado => {
+        if (this.senha == dado.val().senhaResp) {
+         this.rota.navigate(['resp-recebidas']);
+        } else {
+        alert("sai dai");
+        }
+        })
+      });
+  }
 }
