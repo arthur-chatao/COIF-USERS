@@ -1,9 +1,97 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>resp-respostas</ion-title>
+    <ion-title>Autorizar Saida</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+<ion-content>
+  <ion-card color="secondary">
+
+    <ion-card-header>
+      <ion-card-title> Informações do Estudante </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label> Curso: </ion-label>
+          <ion-select placeholder="Selecione seu Curso" [(ngModel)]='respostasUsers.cursoM'>
+            <ion-select-option *ngFor='let curso of listaCurso | async' [value]="curso">
+              {{curso.sigla}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-label> Ano que está Cursando: </ion-label>
+          <ion-select placeholder="Selecione seu Ano" [(ngModel)]='respostasUsers.anoM'>
+            <ion-select-option value="1"> 1° </ion-select-option>
+            <ion-select-option value="2"> 2° </ion-select-option>
+            <ion-select-option value="3"> 3° </ion-select-option>
+            <ion-select-option value="4"> 4° </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <ion-item>
+        <ion-label position="floating"> Nome Completo do Aluno </ion-label>
+        <ion-input [(ngModel)]='respostasUsers.nomeA'> </ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="primary">
+    <ion-card-header>
+      <ion-card-title> Informações do Responsável </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating"> Nome Completo do Responsável </ion-label>
+        <ion-input [(ngModel)]='respostasUsers.nomeR'></ion-input>
+      </ion-item>
+
+      <br>
+      <ion-item>
+        <ion-label position="floating" > N° do RG </ion-label>
+        <ion-input [(ngModel)]='respostasUsers.rgR' [brmasker]="{mask:'00.000.000-0', len:12, userCaracters: true}" maxlength='12' required></ion-input>
+      </ion-item>
+
+      <br>
+      <ion-item>
+        <ion-label position="floating"> N° do CPF </ion-label>
+        <ion-input [(ngModel)]='respostasUsers.cpfR' [brmasker]="{person: true}"  maxlength='14' required></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="floating"> Quem Irá Buscar o Aluno? </ion-label>
+        <ion-input [(ngModel)]='respostasUsers.carona'></ion-input>
+      </ion-item>
+      <br>
+      <ion-list>
+        <ion-item>
+          <ion-label> Autoriza a Saida?? </ion-label>
+          <ion-select [(ngModel)]='respostasUsers.autori'>
+            <ion-select-option value="Sim"> Sim </ion-select-option>
+            <ion-select-option value="Nao"> Nao </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <br>
+      <ion-item>
+        <ion-label>Data</ion-label>
+        <ion-datetime display-format="DD-MM-YYYY" [(ngModel)]='respostasUsers.dia'></ion-datetime>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label>Horario</ion-label>
+        <ion-datetime [(ngModel)]='respostasUsers.horas' display-format="HH:mm"></ion-datetime>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="floating"> Confirmmar Senha </ion-label>
+        <ion-input type='password' [(ngModel)]='respostasUsers.senhaC'></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-button expand='full' (click)='env()'> Enviar Resposta </ion-button>
 </ion-content>

@@ -11,6 +11,11 @@
     <ion-card-content>
       <ion-item>
         <ion-list>
+          <ion-label><b>Data: {{ enviosAdm.data | date:  'dd/MM/yyyy' }}</b></ion-label>
+        </ion-list>
+      </ion-item>
+      <ion-item>
+        <ion-list>
           <ion-label><b>Presado Senhor(a) {{ enviosAdm.nomeDest }}</b></ion-label>
         </ion-list>
       </ion-item>
@@ -25,9 +30,9 @@
         </ion-list>
       </ion-item>
 
-      <ion-button expand='full' href='resp-respostas'> Autorizar </ion-button>
+      <ion-button expand='full' (click)='aut(enviosAdm.key)'> Autorizar </ion-button>
 
-
+      <ion-button expand='full' href='resp-respostas'> Dbug </ion-button>
 
     </ion-card-content>
   </ion-card>

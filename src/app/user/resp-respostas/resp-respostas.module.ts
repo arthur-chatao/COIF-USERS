@@ -7,9 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { RespRespostasPageRoutingModule } from './resp-respostas-routing.module';
 
 import { RespRespostasPage } from './resp-respostas.page';
+import { BrMaskerModule } from 'br-mask';
 
 @NgModule({
   imports: [
+    BrMaskerModule,
     CommonModule,
     FormsModule,
     IonicModule,

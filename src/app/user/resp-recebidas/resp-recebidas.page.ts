@@ -20,7 +20,7 @@ export class RespRecebidasPage implements OnInit {
   constructor(private fire: AngularFireDatabase, private router: Router, ) {
 
         this.listaEnviar = this.fire.list<Enviar>('enviosAdm', ref =>
-          ref.orderByChild('cpfDest').equalTo('10650701950')).snapshotChanges().pipe(
+          ref.orderByChild('cpfDest').equalTo('106.507.019-50')).snapshotChanges().pipe(
 
             map(lista => lista.map(linha => ({
               key: linha.payload.key, ...
@@ -34,6 +34,11 @@ export class RespRecebidasPage implements OnInit {
 
   }
   ngOnInit() {
+  }
+
+  aut(chave){
+    this.fire.list('enviosAdm').remove(chave);
+    this.router.navigate(['resp-respostas']);
   }
 
 }
